@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage> {
     token();
     LocalNotificationService.init();
     listentNotification();
+    listentNotificationf();
 
     setState(() {
       isFirstLaunch = box.read(ConstKey.isFirstLaunch) ?? true;
@@ -74,7 +75,18 @@ class _HomePageState extends State<HomePage> {
 
   void listentNotification() => LocalNotificationService.onNotifications.stream
       .listen(onclickNotification);
-  //void listentNotificationf() =>
+
+  void listentNotificationf() =>
+      FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+        print('----------------${message.messageId}----------');
+        // TokenController tokenController = Get.find();
+        // tokenController.onNotificationFunction();
+        setState(() {
+          _selectedIndex = 1;
+        });
+
+        //Get.toNamed('/homepage');
+      });
 
   void onclickNotification(String? payload) {
     print('----------------$payload----------');

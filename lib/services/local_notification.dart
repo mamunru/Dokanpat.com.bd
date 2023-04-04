@@ -79,13 +79,13 @@ class LocalNotificationService {
       showFlutterNotification(message);
     });
 
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('----------------${message.messageId}----------');
-      TokenController tokenController = Get.find();
-      tokenController.onNotificationFunction();
+    // FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    //   print('----------------${message.messageId}----------');
+    //   TokenController tokenController = Get.find();
+    //   tokenController.onNotificationFunction();
 
-      //Get.toNamed('/homepage');
-    });
+    //   //Get.toNamed('/homepage');
+    // });
 
     final android = AndroidInitializationSettings('@drawable/ic_stat_android');
     final settings = InitializationSettings(android: android);

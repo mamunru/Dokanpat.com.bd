@@ -173,6 +173,9 @@ class TokenController extends GetxController {
   }
 
   void getnotification() async {
+    onnotification = true;
+    update();
+
     _box.write(ConstKey.onnotificationcount, false);
     int userid = int.parse(_box.read(ConstKey.userid));
     var data = await ApiService().getmessage(userid);
