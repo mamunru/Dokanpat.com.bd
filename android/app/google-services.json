@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1003688476075",
+    "project_id": "dokanpart-351c5",
+    "storage_bucket": "dokanpart-351c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003688476075:android:ba1e126e3e9db34f2fe6ee",
+        "android_client_info": {
+          "package_name": "com.dokanpart.dokanpart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1003688476075-ev4su3k32vnn6ie0ivp668rmt8bn2bs8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_o3e0NEu8915Vsnowmm8F9vT0wSFh_ss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1003688476075-ev4su3k32vnn6ie0ivp668rmt8bn2bs8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003688476075:android:df8e105a9b2627a82fe6ee",
+        "android_client_info": {
+          "package_name": "com.dokanpat.bd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1003688476075-ev4su3k32vnn6ie0ivp668rmt8bn2bs8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_o3e0NEu8915Vsnowmm8F9vT0wSFh_ss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1003688476075-ev4su3k32vnn6ie0ivp668rmt8bn2bs8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
