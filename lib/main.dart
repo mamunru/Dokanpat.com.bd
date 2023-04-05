@@ -21,7 +21,7 @@ import 'firebase_options.dart';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
+  //await Firebase.initializeApp();
   //GetStorage().write(ConstKey.onnotificationcount, true);
   // await setupFlutterNotifications();
   //showFlutterNotification(message);
@@ -47,7 +47,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseMessaging.instance.setAutoInitEnabled(true);
+  await FirebaseMessaging.instance.getInitialMessage();
   // Set the background messaging handler early on, as a named top-level function
   //FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 

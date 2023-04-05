@@ -32,36 +32,36 @@ class LocalNotificationService {
     final BigPictureStyleInformation styleInformation =
         BigPictureStyleInformation(
       FilePathAndroidBitmap(bigPicurePath),
-      // largeIcon: FilePathAndroidBitmap(largeIconPath)
+      //largeIcon: FilePathAndroidBitmap(largeIconPath)
     );
 
     final BigPictureStyleInformation bigPictureStyleInformation =
         BigPictureStyleInformation(FilePathAndroidBitmap(bigPicurePath),
-            //largeIcon: FilePathAndroidBitmap(largeIconPath),
+            // largeIcon: FilePathAndroidBitmap(largeIconPath),
             contentTitle: 'overridden <b>big</b> content title',
             htmlFormatContentTitle: true,
             summaryText: 'summary <i>text</i>',
             htmlFormatSummaryText: true);
 
     return NotificationDetails(
-      android: AndroidNotificationDetails(
-        'channel id',
-        'channel name',
-        channelDescription: 'channel description',
-        importance: Importance.max,
-        styleInformation: styleInformation,
-      ),
+      android: AndroidNotificationDetails('dokanpat', 'dokanpat name',
+          channelDescription: 'channel description',
+          importance: Importance.max,
+          priority: Priority.high,
+          color: Colors.red,
+          styleInformation: styleInformation,
+          largeIcon: DrawableResourceAndroidBitmap('@mipmap/ic_launcher')),
     );
   }
 
   static Future _notificationDetails() async {
     return const NotificationDetails(
-      android: AndroidNotificationDetails(
-        'channel id',
-        'channel name',
-        channelDescription: 'channel description',
-        importance: Importance.max,
-      ),
+      android: AndroidNotificationDetails('dokanpat', 'dokanpat name',
+          channelDescription: 'channel description',
+          importance: Importance.max,
+          priority: Priority.high,
+          color: Colors.red,
+          largeIcon: DrawableResourceAndroidBitmap('@mipmap/ic_launcher')),
     );
   }
 
@@ -76,6 +76,8 @@ class LocalNotificationService {
     FirebaseMessaging.instance.getInitialMessage();
 
     FirebaseMessaging.onMessage.listen((message) {
+      print('Got a message whilst in the foreground!');
+      print('Message data: ${message.data}');
       showFlutterNotification(message);
     });
 
@@ -87,7 +89,7 @@ class LocalNotificationService {
     //   //Get.toNamed('/homepage');
     // });
 
-    final android = AndroidInitializationSettings('@drawable/ic_stat_android');
+    final android = AndroidInitializationSettings('@drawable/dokanpat');
     final settings = InitializationSettings(android: android);
     final details = await _notifications.getNotificationAppLaunchDetails();
 
@@ -125,7 +127,7 @@ class LocalNotificationService {
       );
 
   static void showFlutterNotification(RemoteMessage message) async {
-    final _box = GetStorage();
+    //  final _box = GetStorage();
     RemoteNotification? notification = message.notification;
     AndroidNotification? android = message.notification?.android;
     print(message.data);
@@ -139,7 +141,7 @@ class LocalNotificationService {
           notification.title,
           notification.body,
           await _notificationDetailswithimage(message.data['image'].toString()),
-          payload: '/homepage',
+          payload: notification.title,
         );
       } else {
         _notifications.show(
@@ -147,7 +149,7 @@ class LocalNotificationService {
           notification.title,
           notification.body,
           await _notificationDetails(),
-          payload: '/homepage',
+          payload: notification.title,
         );
       }
     }

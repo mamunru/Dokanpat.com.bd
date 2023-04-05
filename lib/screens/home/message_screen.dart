@@ -3,6 +3,7 @@ import 'package:dokanpat/controllers/token_controller.dart';
 import 'package:dokanpat/widgets/empty_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MessageScreen extends StatelessWidget {
   const MessageScreen({super.key});
@@ -20,7 +21,7 @@ class MessageScreen extends StatelessWidget {
         child: GetBuilder<TokenController>(builder: (controller) {
           return Container(
             //height: MediaQuery.of(context).size.height,
-            child: controller.onnotification
+            child: controller.onnotificationloading
                 ? Container(
                     height: MediaQuery.of(context).size.height,
                     child: Center(
@@ -36,14 +37,16 @@ class MessageScreen extends StatelessWidget {
                         children: controller.sms.value.map((e) {
                           return Padding(
                             padding: const EdgeInsets.all(2.0),
-                            child: InkWell(
-                              onTap: () {
-                                Get.bottomSheet(Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * .50,
-                                  width: MediaQuery.of(context).size.width,
-                                  color: Colors.white,
-                                  child: Container(
+                            child: Card(
+                              child: ListTile(
+                                onTap: () {
+                                  Get.bottomSheet(Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    height: MediaQuery.of(context).size.height *
+                                        .50,
+                                    width: MediaQuery.of(context).size.width,
+                                    color: Colors.white,
                                     child: Column(
                                       children: [
                                         const SizedBox(
@@ -78,38 +81,52 @@ class MessageScreen extends StatelessWidget {
                                             : Container()
                                       ],
                                     ),
-                                  ),
-                                ));
-                              },
-                              child: Card(
-                                color: e.id!.isEven
-                                    ? Colors.white60
-                                    : Color.fromARGB(255, 188, 184, 235),
-                                child: SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 80,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        e.title.toString(),
-                                        style: headerText2,
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        e.message.toString(),
-                                        style: detailText16,
-                                      )
-                                    ],
+                                  ));
+                                },
+                                leading: const CircleAvatar(
+                                  backgroundColor: Colors.red,
+                                  child: FaIcon(
+                                    FontAwesomeIcons.bullhorn,
+                                    size: 22,
+                                    color: Colors.white,
                                   ),
                                 ),
+                                title: Text(
+                                  e.title.toString(),
+                                  style: detailText16.copyWith(
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                subtitle: Text(
+                                  e.message.toString(),
+                                  maxLines: 3,
+                                  style: detailText16,
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: false,
+                                ),
                               ),
+                              // child: Card(
+                              //   color: e.id!.isEven
+                              //       ? Colors.white60
+                              //       : Color.fromARGB(255, 188, 184, 235),
+                              //   child: SizedBox(
+                              //     width: MediaQuery.of(context).size.width,
+                              //     height: 80,
+                              //     child: Column(
+                              //       crossAxisAlignment:
+                              //           CrossAxisAlignment.center,
+                              //       children: [
+                              //         const SizedBox(
+                              //           height: 10,
+                              //         ),
+
+                              //         const SizedBox(
+                              //           height: 10,
+                              //         ),
+
+                              //       ],
+                              //     ),
+                              //   ),
+                              // ),
                             ),
                           );
                         }).toList(),

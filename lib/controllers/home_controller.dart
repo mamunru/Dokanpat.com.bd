@@ -27,6 +27,7 @@ class HomeController extends GetxController {
     bool isFirstLaunch = box.read(ConstKey.isFirstLaunch) ?? true;
     if (isFirstLaunch) {
       print('------------------------error--------------');
+      box.write(ConstKey.onnotificationcount, false);
       //box.write('isFirstLaunch', false);
       box.write(ConstKey.stateid, 'BD-00');
       box.write(ConstKey.statename, 'Select Your Location');

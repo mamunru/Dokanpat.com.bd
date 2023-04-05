@@ -24,6 +24,7 @@ class TokenController extends GetxController {
   // _productsall = <bannerModel>[].obs;
   var _category = <Option>[].obs;
   bool onnotification = false;
+  bool onnotificationloading = false;
 
   bannerModel get banner => _banner!;
   RxList<Option> get category => _category;
@@ -173,7 +174,7 @@ class TokenController extends GetxController {
   }
 
   void getnotification() async {
-    onnotification = true;
+    onnotificationloading = true;
     update();
 
     _box.write(ConstKey.onnotificationcount, false);
@@ -181,6 +182,7 @@ class TokenController extends GetxController {
     var data = await ApiService().getmessage(userid);
     _sms.value = data;
     onnotification = false;
+    onnotificationloading = false;
 
     update();
   }

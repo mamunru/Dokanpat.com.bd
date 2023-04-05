@@ -81,11 +81,13 @@ class _HomePageState extends State<HomePage> {
         print('----------------${message.messageId}----------');
         // TokenController tokenController = Get.find();
         // tokenController.onNotificationFunction();
-        setState(() {
-          _selectedIndex = 1;
-        });
+        if (message != null) {
+          setState(() {
+            _selectedIndex = 1;
+          });
 
-        //Get.toNamed('/homepage');
+          Get.toNamed('/homepage');
+        }
       });
 
   void onclickNotification(String? payload) {
@@ -93,7 +95,7 @@ class _HomePageState extends State<HomePage> {
     TokenController tokenController = Get.find();
     tokenController.getnotification();
 
-    //Get.toNamed('/homepage');
+    // Get.toNamed('/homepage');
     setState(() {
       _selectedIndex = 1;
     });
@@ -203,26 +205,33 @@ class _HomePageState extends State<HomePage> {
                               child: Stack(
                                 children: [
                                   Center(
-                                    child: FaIcon(
-                                      FontAwesomeIcons.solidMessage,
-                                      size: _selectedIndex == 1 ? 28 : 22,
-                                      color: _selectedIndex == 1
-                                          ? Theme.of(context).focusColor
-                                          : Colors.black,
-                                    ),
+                                    child: tokenController.onnotification
+                                        ? FaIcon(
+                                            FontAwesomeIcons.solidBell,
+                                            size: _selectedIndex == 1 ? 28 : 22,
+                                            color: _selectedIndex == 1
+                                                ? Theme.of(context).focusColor
+                                                : Colors.black,
+                                          )
+                                        : FaIcon(
+                                            FontAwesomeIcons.solidMessage,
+                                            size: _selectedIndex == 1 ? 28 : 22,
+                                            color: _selectedIndex == 1
+                                                ? Theme.of(context).focusColor
+                                                : Colors.black,
+                                          ),
                                   ),
                                   Positioned(
                                       top: 0,
                                       left: MediaQuery.of(context).size.width /
-                                              8 -
+                                              7.5 -
                                           5,
                                       child: Visibility(
                                         visible: tokenController.onnotification,
                                         child: Center(
                                             child: FaIcon(
-                                          FontAwesomeIcons.solidBell,
-                                          color:
-                                              Color.fromARGB(255, 250, 225, 2),
+                                          FontAwesomeIcons.commentDots,
+                                          color: Color.fromARGB(255, 250, 2, 2),
                                         )),
                                       ))
                                 ],
