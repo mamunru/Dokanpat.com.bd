@@ -148,7 +148,7 @@ class MyDrawerController extends GetxController {
 
     if (now.day != _day && isFirstLaunch == false) {
       _box.write(ConstKey.today, now.day.toString());
-      _box.write(ConstKey.onnotificationcount, false);
+
       var data = await ApiService().onscreensms();
       onscreen.value = data;
 

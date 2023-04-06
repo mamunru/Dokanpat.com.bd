@@ -7,10 +7,12 @@ import 'package:dokanpat/widgets/images/network_images.dart';
 import 'package:dokanpat/widgets/single_product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:facebook_app_events/facebook_app_events.dart';
 
 class HorizontalProductList extends StatelessWidget {
   List<productModel> data;
   HorizontalProductList({required this.data, Key? key}) : super(key: key);
+  static final facebookAppEvents = FacebookAppEvents();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,12 @@ class HorizontalProductList extends StatelessWidget {
           return price && regular && image
               ? SingleProductCard(
                   ontap: () {
+                    facebookAppEvents.logEvent(
+                      name: 'Product_View',
+                      parameters: {
+                        'product_name': single.name,
+                      },
+                    );
                     Get.toNamed(
                         '/product_details/${single.id}/${single.categories![0].id}',
                         arguments: single);

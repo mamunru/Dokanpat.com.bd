@@ -10,10 +10,13 @@ import 'package:http/http.dart';
 import '../../../controllers/product_filter_controller.dart';
 import '../../../widgets/single_product_card.dart';
 import 'package:get/get.dart';
+import 'package:facebook_app_events/facebook_app_events.dart';
 
 class Horizontal3ProductList extends StatelessWidget {
   List<productModel> data;
   Horizontal3ProductList({required this.data, Key? key}) : super(key: key);
+
+  static final facebookAppEvents = FacebookAppEvents();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +32,12 @@ class Horizontal3ProductList extends StatelessWidget {
           return price && regular && image
               ? SingleProductCard(
                   ontap: () {
+                    facebookAppEvents.logEvent(
+                      name: 'Product_View',
+                      parameters: {
+                        'product_name': single.name,
+                      },
+                    );
                     // int catid = single.categories!.length > 0
                     //     ? Random().nextInt(single.categories!.length)
                     //     : 0;

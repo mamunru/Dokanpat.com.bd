@@ -19,8 +19,10 @@ import 'package:get_storage/get_storage.dart';
 
 import '../configs/themes/custome_text_style.dart';
 import '../model/shoppingAddress_model.dart';
+import 'package:facebook_app_events/facebook_app_events.dart';
 
 class CartController extends GetxController {
+  static final facebookAppEvents = FacebookAppEvents();
   final _box = GetStorage();
   var _cartlist = <cartModel>[].obs;
   var _selecteditems = <cartModel>[].obs;
@@ -124,8 +126,18 @@ class CartController extends GetxController {
 
     totalprice();
     storedata();
+    faceboolevent(name, price);
 
     update();
+  }
+
+  void faceboolevent(String name, String price) {
+    facebookAppEvents.logAddToCart(
+      id: name,
+      type: 'product',
+      price: double.parse(price),
+      currency: 'TRY',
+    );
   }
 
   void directshopping(
@@ -185,6 +197,7 @@ class CartController extends GetxController {
     }
 
     totalprice();
+    faceboolevent(name, price);
 
     update();
     Get.toNamed('/shopping/cart');

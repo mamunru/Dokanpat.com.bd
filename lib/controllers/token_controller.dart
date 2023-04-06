@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:dio/dio.dart';
 import 'package:dokanpat/configs/api_url.dart';
 import 'package:dokanpat/configs/key_value.dart';
 import 'package:dokanpat/configs/server.dart';
@@ -32,11 +33,13 @@ class TokenController extends GetxController {
   var _sms = <smsModel>[].obs;
   RxList<smsModel> get sms => _sms;
   DateTime now = new DateTime.now();
+  String tokendata = '';
 
   @override
   void onReady() {
     //  initHome();
-    onnotification = _box.read(ConstKey.onnotificationcount) ?? true;
+    //onnotification = _box.read(ConstKey.onnotificationcount) ?? true;
+
     int _day = int.parse(_box.read(ConstKey.today).toString() == 'null'
         ? '0'
         : _box.read(ConstKey.today).toString());
@@ -50,7 +53,7 @@ class TokenController extends GetxController {
     //onNotificationFunction();
     //getnotification();
 
-    //
+    // getnotificationstarus();
     super.onReady();
   }
 
@@ -170,18 +173,32 @@ class TokenController extends GetxController {
         ? 'Guest'
         : _box.read(ConstKey.username);
     ;
+
+    var status =
+        await Dio().get(Server.secondapi + '/notification/status/$token');
+    Map<String, dynamic> decodestatus = status.data as Map<String, dynamic>;
+
+    //print(decodestatus['status']);
+    if (decodestatus['status'] == 1) {
+      onnotification = true;
+    }
     ApiService().storetoken(token, userid, name);
+    tokendata = token;
+    update();
   }
 
   void getnotification() async {
     onnotificationloading = true;
+    onnotification = false;
     update();
 
-    _box.write(ConstKey.onnotificationcount, false);
+    // _box.write(ConstKey.onnotificationcount, false);
     int userid = int.parse(_box.read(ConstKey.userid));
     var data = await ApiService().getmessage(userid);
+    await Dio()
+        .get(Server.secondapi + '/notification/status/change/$tokendata');
     _sms.value = data;
-    onnotification = false;
+
     onnotificationloading = false;
 
     update();
@@ -189,7 +206,7 @@ class TokenController extends GetxController {
 
   void onNotificationFunction() {
     onnotification = true;
-    _box.write(ConstKey.onnotificationcount, true);
+    //_box.write(ConstKey.onnotificationcount, true);
     update();
   }
 }

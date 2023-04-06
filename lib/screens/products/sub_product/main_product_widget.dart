@@ -8,12 +8,14 @@ import 'package:dokanpat/widgets/images/network_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:facebook_app_events/facebook_app_events.dart';
 
 class MainProductWidget extends StatelessWidget {
   List<productModel> data;
   bool progress;
   MainProductWidget({required this.data, this.progress = false, Key? key})
       : super(key: key);
+  static final facebookAppEvents = FacebookAppEvents();
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,12 @@ class MainProductWidget extends StatelessWidget {
                         Get.toNamed(
                             '/product_details/${single.id}/${single.categories![0].id}',
                             arguments: single);
+                        facebookAppEvents.logEvent(
+                          name: 'Product_View',
+                          parameters: {
+                            'product_name': single.name,
+                          },
+                        );
                       },
                       child: Card(
                         //padding: const EdgeInsets.all(3.0),

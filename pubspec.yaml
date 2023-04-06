@@ -45,6 +45,7 @@ dependencies:
   connectivity_plus: ^3.0.3
   path_provider: ^2.0.14
   rxdart: ^0.27.7  
+  facebook_app_events: ^0.18.3
 
 dev_dependencies:
   flutter_test:
