@@ -11,8 +11,8 @@ class Server {
   static String secret_key = "cs_79fd902ebddb12feb3d00330e6f1722f7c7098cd";
   static String apikey = "appkey";
   static String password = "12345678";
-  static String tagname = 'Chocolate Molds';
-  //static String tagname = 'home delelivery';
+  //static String tagname = 'Chocolate Molds';
+  static String tagname = 'home delivery';
   static String whatsapp = '+8801718987202';
   static String phone = '01718987202';
   static String facebook = 'https://www.facebook.com/dokanpatbangladesh';
