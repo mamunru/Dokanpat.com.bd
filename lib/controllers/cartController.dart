@@ -85,9 +85,11 @@ class CartController extends GetxController {
       String? variationValue,
       String? src,
       bool tagstatus) {
-    int index = _cartlist.indexWhere((e) => e.product_id == id);
+    int index = _cartlist.indexWhere(
+        (e) => e.product_id == id && e.variation_id == variation_id);
     //_selecteditems.addAll(_cartlist);
-    int sindex = _selecteditems.indexWhere((e) => e.product_id == id);
+    int sindex = _selecteditems.indexWhere(
+        (e) => e.product_id == id && e.variation_id == variation_id);
 
     if (index < 0) {
       cartModel data = cartModel(
@@ -104,24 +106,25 @@ class CartController extends GetxController {
       _cartlist.add(data);
       _selecteditems.add(data);
     } else {
-      if (_cartlist[index].variation_id == variation_id) {
-        _cartlist[index].quantity = quantiry;
-        _selecteditems[sindex].quantity = quantiry;
-      } else {
-        _cartlist[index].price = price;
-        _cartlist[index].regularPrice = regular_price;
-        _cartlist[index].quantity = quantiry;
-        _cartlist[index].variationValue = variationValue;
-        _cartlist[index].variation_id = variation_id;
-        _cartlist[index].src = src;
+      _cartlist[index].quantity = quantiry;
+      _selecteditems[sindex].quantity = quantiry;
+      // if (_cartlist[index].variation_id == variation_id) {
 
-        _selecteditems[sindex].price = price;
-        _selecteditems[sindex].regularPrice = regular_price;
-        _selecteditems[sindex].quantity = quantiry;
-        _selecteditems[sindex].variation_id = variation_id;
-        _selecteditems[sindex].variationValue = variationValue;
-        _selecteditems[sindex].src = src;
-      }
+      // } else {
+      //   _cartlist[index].price = price;
+      //   _cartlist[index].regularPrice = regular_price;
+      //   _cartlist[index].quantity = quantiry;
+      //   _cartlist[index].variationValue = variationValue;
+      //   _cartlist[index].variation_id = variation_id;
+      //   _cartlist[index].src = src;
+
+      //   _selecteditems[sindex].price = price;
+      //   _selecteditems[sindex].regularPrice = regular_price;
+      //   _selecteditems[sindex].quantity = quantiry;
+      //   _selecteditems[sindex].variation_id = variation_id;
+      //   _selecteditems[sindex].variationValue = variationValue;
+      //   _selecteditems[sindex].src = src;
+      // }
     }
 
     totalprice();
@@ -150,7 +153,8 @@ class CartController extends GetxController {
       String? variationValue,
       String? src,
       bool? tagstatus) {
-    int index = _cartlist.indexWhere((e) => e.product_id == id);
+    int index = _cartlist.indexWhere(
+        (e) => e.product_id == id && e.variation_id == variation_id);
     cartModel data = cartModel(
         product_id: id,
         name: name,
@@ -167,33 +171,40 @@ class CartController extends GetxController {
       _cartlist.add(data);
       _selecteditems.add(data);
     } else {
+      _cartlist[index].quantity = quantiry;
+      _cartlist[index].check = true;
+      int sindex = _selecteditems.indexWhere(
+          (e) => e.product_id == id && e.variation_id == variation_id);
+
+      _selecteditems[sindex].quantity = quantiry;
+      _selecteditems[sindex].check = true;
       //_selecteditems.add(_cartlist[index]);
-      if (_cartlist[index].variation_id == variation_id) {
-        _cartlist[index].quantity = quantiry;
-        _cartlist[index].check = true;
-        int sindex = _selecteditems.indexWhere((e) => e.product_id == id);
+      // if (_cartlist[index].variation_id == variation_id) {
+      //   _cartlist[index].quantity = quantiry;
+      //   _cartlist[index].check = true;
+      //   int sindex = _selecteditems.indexWhere((e) => e.product_id == id);
 
-        _selecteditems[sindex].quantity = quantiry;
-        _selecteditems[sindex].check = true;
-      } else {
-        _cartlist[index].check = true;
-        _cartlist[index].price = price;
-        _cartlist[index].regularPrice = regular_price;
-        _cartlist[index].quantity = quantiry;
-        _cartlist[index].variationValue = variationValue;
-        _cartlist[index].variation_id = variation_id;
-        _cartlist[index].src = src;
+      //   _selecteditems[sindex].quantity = quantiry;
+      //   _selecteditems[sindex].check = true;
+      // } else {
+      //   _cartlist[index].check = true;
+      //   _cartlist[index].price = price;
+      //   _cartlist[index].regularPrice = regular_price;
+      //   _cartlist[index].quantity = quantiry;
+      //   _cartlist[index].variationValue = variationValue;
+      //   _cartlist[index].variation_id = variation_id;
+      //   _cartlist[index].src = src;
 
-        int sindex = _selecteditems.indexWhere((e) => e.product_id == id);
+      //   int sindex = _selecteditems.indexWhere((e) => e.product_id == id);
 
-        _selecteditems[sindex].check = true;
-        _selecteditems[sindex].price = price;
-        _selecteditems[sindex].regularPrice = regular_price;
-        _selecteditems[sindex].quantity = quantiry;
-        _selecteditems[sindex].variationValue = variationValue;
-        _selecteditems[sindex].variation_id = variation_id;
-        _selecteditems[sindex].src = src;
-      }
+      //   _selecteditems[sindex].check = true;
+      //   _selecteditems[sindex].price = price;
+      //   _selecteditems[sindex].regularPrice = regular_price;
+      //   _selecteditems[sindex].quantity = quantiry;
+      //   _selecteditems[sindex].variationValue = variationValue;
+      //   _selecteditems[sindex].variation_id = variation_id;
+      //   _selecteditems[sindex].src = src;
+      // }
     }
 
     totalprice();
