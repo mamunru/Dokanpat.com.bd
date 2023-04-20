@@ -276,17 +276,19 @@ class _OnlineProductDetailsState extends State<OnlineProductDetails> {
                                           onTap: (() {
                                             CartController cartcontroller =
                                                 Get.find();
+                                            setState(() {
+                                              product!.price = data.price;
+                                              product!.regularPrice =
+                                                  data.regularPrice;
+                                              product!.stockStatus =
+                                                  data.stockStatus;
+                                            });
 
                                             if (tagname) {
                                               if (cartcontroller.state ==
                                                       'BD-12' ||
                                                   cartcontroller.state ==
                                                       'BD-BD-39') {
-                                                setState(() {
-                                                  product!.price = data.price;
-                                                  product!.regularPrice =
-                                                      data.regularPrice;
-                                                });
                                                 print(cartcontroller.state);
                                                 showModalBottomSheet(
                                                   context: context,
@@ -366,11 +368,6 @@ class _OnlineProductDetailsState extends State<OnlineProductDetails> {
                                                     ]);
                                               }
                                             } else {
-                                              setState(() {
-                                                product!.price = data.price;
-                                                product!.regularPrice =
-                                                    data.regularPrice;
-                                              });
                                               showModalBottomSheet(
                                                 context: context,
                                                 isScrollControlled: true,

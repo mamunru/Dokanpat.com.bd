@@ -74,6 +74,7 @@ class LocalNotificationService {
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
     FirebaseMessaging.instance.getInitialMessage();
+    FirebaseMessaging.instance.subscribeToTopic('all');
 
     FirebaseMessaging.onMessage.listen((message) {
       print('Got a message whilst in the foreground!');

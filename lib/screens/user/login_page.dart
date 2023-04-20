@@ -111,7 +111,7 @@ class LoginPage extends StatelessWidget {
                                     Visibility(
                                         visible: logincontroller.showerror,
                                         child: Text(
-                                          'UserName Or Password Wrong !!',
+                                          'Email Or Password Wrong !!',
                                           style: detailText16.copyWith(
                                               color: Colors.red),
                                         )),
@@ -133,13 +133,13 @@ class LoginPage extends StatelessWidget {
                                           if (value == null ||
                                               value.isEmpty ||
                                               emailv == false) {
-                                            return 'Email or User Name is Empty or Invalide';
+                                            return 'Email  is Empty or Invalide';
                                           }
                                           return null;
                                         },
                                         decoration: InputDecoration(
                                             border: InputBorder.none,
-                                            hintText: "Email or User Name",
+                                            hintText: "Email ",
                                             hintStyle: TextStyle(
                                                 color: Colors.grey[400])),
                                       ),

@@ -114,7 +114,7 @@ class UserLoginDailog extends StatelessWidget {
                                   Visibility(
                                       visible: logincontroller.showerror,
                                       child: Text(
-                                        'UserName Or Password Wrong !!',
+                                        'Email Or Password Wrong !!',
                                         style: detailText16.copyWith(
                                             color: Colors.red),
                                       )),
@@ -125,6 +125,7 @@ class UserLoginDailog extends StatelessWidget {
                                             bottom: BorderSide(
                                                 color: Colors.grey.shade100))),
                                     child: TextFormField(
+                                      keyboardType: TextInputType.emailAddress,
                                       controller: username,
                                       style: const TextStyle(fontSize: 18),
                                       validator: (value) {
@@ -133,13 +134,13 @@ class UserLoginDailog extends StatelessWidget {
                                         if (value == null ||
                                             value.isEmpty ||
                                             emailv == false) {
-                                          return 'Email or User Name is Empty or Invalide';
+                                          return 'Email  is Empty or Invalide';
                                         }
                                         return null;
                                       },
                                       decoration: InputDecoration(
                                           border: InputBorder.none,
-                                          hintText: "Email or User Name",
+                                          hintText: "Email",
                                           hintStyle: TextStyle(
                                               color: Colors.grey[400])),
                                     ),

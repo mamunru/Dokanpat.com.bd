@@ -302,22 +302,21 @@ class _SingleProductOnlineState extends State<SingleProductOnline> {
                                               onTap: (() {
                                                 CartController cartcontroller =
                                                     Get.find();
+                                                setState(() {
+                                                  pcontroller.onlinedata.value
+                                                      .price = data.price;
+                                                  pcontroller.onlinedata.value
+                                                          .regularPrice =
+                                                      data.regularPrice;
+                                                  pcontroller.onlinedata.value
+                                                          .stockStatus =
+                                                      data.stockStatus;
+                                                });
                                                 if (tagname) {
                                                   if (cartcontroller.state ==
                                                           'BD-12' ||
                                                       cartcontroller.state ==
                                                           'BD-BD-39') {
-                                                    setState(() {
-                                                      pcontroller
-                                                          .onlinedata
-                                                          .value
-                                                          .price = data.price;
-                                                      pcontroller
-                                                              .onlinedata
-                                                              .value
-                                                              .regularPrice =
-                                                          data.regularPrice;
-                                                    });
                                                     showModalBottomSheet(
                                                       context: context,
                                                       isScrollControlled: true,
@@ -401,13 +400,6 @@ class _SingleProductOnlineState extends State<SingleProductOnline> {
                                                   }
                                                 } //tagname if else
                                                 else {
-                                                  setState(() {
-                                                    pcontroller.onlinedata.value
-                                                        .price = data.price;
-                                                    pcontroller.onlinedata.value
-                                                            .regularPrice =
-                                                        data.regularPrice;
-                                                  });
                                                   showModalBottomSheet(
                                                     context: context,
                                                     isScrollControlled: true,

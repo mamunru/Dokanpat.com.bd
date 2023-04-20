@@ -140,7 +140,7 @@ class loginController extends GetxController {
       'last_name': lname,
     });
 
-    print(data);
+    // print(data);
 
     try {
       var response = await Dio().post(
@@ -226,7 +226,7 @@ class loginController extends GetxController {
           options: Options(headers: {'Content-Type': 'application/json'}));
 
       if (response.statusCode == 200) {
-        print(response.data.toString());
+        //print(response.data.toString());
         var bytes = convert.utf8.encode(response.data['cookie']);
         var base64Str = convert.base64.encode(bytes);
         //var data = convert.jsonDecode(response.data);
@@ -252,7 +252,7 @@ class loginController extends GetxController {
         cartcontroller.readlogindata();
         update();
 
-        Get.toNamed('/checkout');
+        Get.offAndToNamed('/checkout');
       }
     } catch (e) {
       showerror = true;
@@ -279,7 +279,7 @@ class loginController extends GetxController {
           data: convert.jsonEncode(indata),
           options: Options(headers: {'Content-Type': 'application/json'}));
       // var result = convert.jsonDecode(response.data);
-      print(response.statusCode);
+      // print(response.statusCode);
       if (response.statusCode == 200) {
         Get.back();
         Get.defaultDialog(

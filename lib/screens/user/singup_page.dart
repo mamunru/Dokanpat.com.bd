@@ -115,13 +115,13 @@ class SingUpPage extends StatelessWidget {
                                       if (value == null ||
                                           value.isEmpty ||
                                           emailv == false) {
-                                        return 'Email or User Name is Empty or Invalide';
+                                        return 'Email is Empty or Invalide';
                                       }
                                       return null;
                                     },
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
-                                        hintText: "Email or User Name",
+                                        hintText: "Email",
                                         hintStyle:
                                             TextStyle(color: Colors.grey[400])),
                                   ),

@@ -163,8 +163,10 @@ class CartScreen extends StatelessWidget {
                           Get.toNamed('/checkout');
                           cartcontroller.pageindex = 0;
                         } else {
+                          logincontroll.showerror = false;
                           Get.toNamed('/buynow/login');
                           cartcontroller.pageindex = 0;
+                          //cartcontroller.
                         }
                       }
                     } else {

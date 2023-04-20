@@ -115,8 +115,13 @@ class _SearchPageState extends State<SearchPage> {
                             title: 'Empty Search. Please Search Your Products',
                           )
                         : SizedBox(
-                            height:
-                                330 * controller.searchproducts.length / 2 + 50,
+                            // height:
+                            //     330 * controller.searchproducts.length / 2 + 50,
+                            height: controller.searchproducts.length.isEven
+                                ? 330.0 / 2 * controller.searchproducts.length
+                                : 330.0 /
+                                    2 *
+                                    (controller.searchproducts.length + 1),
                             child: MainProductWidget(
                                 data: controller.searchproducts));
               }),
